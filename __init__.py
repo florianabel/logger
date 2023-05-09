@@ -159,7 +159,15 @@ class Logger(metaclass=LoggerMeta):
         self.handlers = []
 
     def setLogLevel(self, log_level):
-        self.log_level = _checkLogLevel(log_level)
+        if handler:
+            handlerClass = _name_to_handler[handler]
+            if handlerClass:
+                for handler in self.handlers:
+                    if isinstance(handler, handlerClass):
+                        level = _checkLogLevel(log_level)
+                        handler.setLogLevel(level)
+        else:
+            self.log_level = _checkLogLevel(log_level)
 
     def isEnabledFor(self, log_level):
         isEnabled = log_level >= self.log_level
@@ -170,6 +178,18 @@ class Logger(metaclass=LoggerMeta):
 
     def addConsoleHandler(self):
         handler = ConsoleHandler()
+        self.addHandler(handler)
+
+    def addMailHandler(self):
+        handler = MailHandler()
+        self.addHandler(handler)
+
+    def addFileHandler(self):
+        handler = FileHandler()
+        self.addHandler(handler)
+
+    def addApiHandler(self):
+        handler = ApiHandler()
         self.addHandler(handler)
 
     def addHandler(self, handler):
