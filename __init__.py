@@ -132,7 +132,7 @@ class ApiHandler(Handler):
         self.flush()
 
 
-_nameToHandler = {
+_name_to_handler = {
     'console': ConsoleHandler,
     'mail': MailHandler,
     'file': FileHandler,
