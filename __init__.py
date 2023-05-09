@@ -23,6 +23,9 @@ class Logger(metaclass=LoggerMeta):
     def __init__(self, log_level=DEBUG):
         self.log_level = log_level
 
+    def setLogLevel(self, log_level):
+        self.log_level = log_level
+
 
 def getLogger():
     return Logger()
