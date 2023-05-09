@@ -52,17 +52,25 @@ class Logger(metaclass=LoggerMeta):
     def setLogLevel(self, log_level):
         self.log_level = _checkLogLevel(log_level)
 
+    def isEnabledFor(self, log_level):
+        isEnabled = log_level >= self.log_level
+        return isEnabled
+
     def debug(self, msg):
-        print(msg)
+        if self.isEnabledFor(DEBUG):
+            print(msg)
 
     def info(self, msg):
-        pass
+        if self.isEnabledFor(INFO):
+            print(msg)
 
     def warning(self, msg):
-        pass
+        if self.isEnabledFor(WARNING):
+            print(msg)
 
     def error(self, msg):
-        pass
+        if self.isEnabledFor(ERROR):
+            print(msg)
 
 
 def getLogger():
