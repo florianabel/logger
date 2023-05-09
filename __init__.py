@@ -53,7 +53,7 @@ class Logger(metaclass=LoggerMeta):
         self.log_level = _checkLogLevel(log_level)
 
     def debug(self, msg):
-        pass
+        print(msg)
 
     def info(self, msg):
         pass
