@@ -51,8 +51,8 @@ class Handler:
 
     def handle(self, record):
         if record.log_level >= self.log_level:
-            # prefix = self._prefix(record)
-            # formatted_msg = f"{prefix} {record.msg}{self.terminator}"
+            prefix = self._prefix(record)
+            formatted_msg = f"{prefix} {record.msg}{self.terminator}"
             formatted_msg = record.msg
             self.emit(formatted_msg)
 
@@ -74,12 +74,10 @@ class ConsoleHandler(Handler):
         self.stream = sys.stdout
 
     def flush(self):
-        # self.stream.flush()
-        pass
-
+        self.stream.flush()
+        
     def emit(self, formatted_msg):
-        # self.stream.write(formatted_msg)
-        print(formatted_msg)
+        self.stream.write(formatted_msg)
         self.flush()
 
 
