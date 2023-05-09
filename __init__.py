@@ -52,6 +52,18 @@ class Logger(metaclass=LoggerMeta):
     def setLogLevel(self, log_level):
         self.log_level = _checkLogLevel(log_level)
 
+    def debug(self, msg):
+        pass
+
+    def info(self, msg):
+        pass
+
+    def warning(self, msg):
+        pass
+
+    def error(self, msg):
+        pass
+
 
 def getLogger():
     return Logger()
